@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SportsStore.Models
+namespace OnlineShop.Models
 {
     public class EFProductRepository : IProductRepository
     {
