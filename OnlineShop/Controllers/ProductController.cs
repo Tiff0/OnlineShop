@@ -24,7 +24,7 @@ namespace OnlineShop.Controllers
                 {
                     CurrentPage = productPage,
                     TotalPerPage = PageSize,
-                    TotalItems = repository.Products.Count()
+                    TotalItems = category == null ? repository.Products.Count() : repository.Products.Where(x => x.Category == category).Count()
                 },
                 CurrentCategory = category
             }
