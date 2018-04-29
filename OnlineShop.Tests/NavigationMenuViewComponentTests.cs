@@ -45,13 +45,14 @@ namespace OnlineShop.Tests
                     new Product { ProductID = 4, Name = "P2", Category = "Oranges" }, }
                 ).AsQueryable<Product>());
 
-            NavigationMenuViewComponent target = new NavigationMenuViewComponent(mock.Object);
-
-            target.ViewComponentContext = new ViewComponentContext
+            NavigationMenuViewComponent target = new NavigationMenuViewComponent(mock.Object)
             {
-                ViewContext = new ViewContext
+                ViewComponentContext = new ViewComponentContext
                 {
-                    RouteData = new RouteData()
+                    ViewContext = new ViewContext
+                    {
+                        RouteData = new RouteData()
+                    }
                 }
             };
 
