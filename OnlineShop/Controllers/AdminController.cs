@@ -24,7 +24,7 @@ namespace OnlineShop.Controllers
             if (ModelState.IsValid)
             {
                 productRepository.SaveProduct(product);
-                TempData["message"] = $"(product.Name) has been saved";
+                TempData["message"] = $"{product.Name} has been saved";
                 return RedirectToAction("Index");
             }
             else
