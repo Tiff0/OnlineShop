@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineShop.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductRepository productRepository;
