@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineShop.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace OnlineShop
 {
@@ -21,6 +22,11 @@ namespace OnlineShop
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration["Data:OnlineStoreProducts:ConnectionString"]));
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseSqlServer(Configuration["Data:OnlineShopIdentity:ConnectionString"]));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
             services.AddTransient<IProductRepository, EFProductRepository>();
             services.AddTransient<IOrderRepository, EFOrderRepository>();
             services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
@@ -37,6 +43,7 @@ namespace OnlineShop
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
+            app.UseAuthentication();
             app.UseMvc(routes => {
 
                 routes.MapRoute(
