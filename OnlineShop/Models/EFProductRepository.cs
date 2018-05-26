@@ -33,6 +33,18 @@ namespace OnlineShop.Models
             }
             context.SaveChanges();
         }
+
+        public Product DeleteProduct(int productID)
+        {
+            Product dbEbtry = context.Products.FirstOrDefault(x => x.ProductID == productID);
+            if (dbEbtry != null)
+            {
+                context.Products.Remove(dbEbtry);
+                context.SaveChanges();
+            }
+
+            return dbEbtry;
+        }
     }
 }
                                                         
